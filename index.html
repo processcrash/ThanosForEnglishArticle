@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Thanos' snap</title>
+    <style>
+        .container {
+            width: 650px;
+            margin: 0 auto;
+        }
+        
+        textarea{
+            width: 100%;
+            resize: vertical;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="group">
+            <textarea name="article" id="article" cols="30" rows="10"></textarea>
+        </div>
+
+        <button id="trigger">random remove</button>
+
+        <div id="resultText"></div>
+    </div>
+
+    <script>
+
+        var trigger = document.getElementById('trigger')
+        trigger.addEventListener('click', doit, false)
+        
+        var text = document.getElementById('article')
+
+        function doit() {
+            var _t = text.value
+            if (!_t) return
+
+            // 1. split all words
+            var wordArr = splitWords(_t)
+            console.log(wordArr)
+            var result = []
+
+            // 2. randow word
+            wordArr.forEach(function (item, index) {
+                var _w = random(item)
+                result.push(_w)
+            })
+
+            // 3. render article
+            render(result)
+        }
+
+        var letterReg = /^[A-Za-z]+$/
+        var emptyReg = /\s/
+
+        function splitWords(text) {
+            var _wa = text.split(emptyReg)
+
+            return _wa
+        }
+
+        function random(text) {
+            if (!text) return text
+
+            if (Math.random() > 0.5) return text
+            else return '_'.repeat(text.length)
+        }
+
+        function render(wordArr) {
+            var _r = document.getElementById('resultText')
+            _r.innerHTML = ''
+            _r.innerHTML = wordArr.join(' ')
+        }
+
+    </script>
+</body>
+</html>
