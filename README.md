@@ -1,6 +1,9 @@
 # ThanosForEnglishArticle
 Thanos' snap, to remove 50% words from your English article.
 
+
+There is [demo.](http://sauler.gitee.io/thanosforenglisharticle/)
+
 #### How to use?
 
 1. Open `index.html`.
